@@ -18,6 +18,12 @@
 		CA6F725C142979C6004D3B2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6F7243142979C6004D3B2A /* Foundation.framework */; };
 		CA6F7264142979C6004D3B2A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA6F7262142979C6004D3B2A /* InfoPlist.strings */; };
 		CA6F7267142979C6004D3B2A /* PokerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6F7266142979C6004D3B2A /* PokerTests.m */; };
+		CA6F727214297A12004D3B2A /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6F727114297A12004D3B2A /* Card.m */; };
+		CAC7A853142FAB2D00FCCAB1 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7A852142FAB2D00FCCAB1 /* Deck.m */; };
+		CAC7A856142FB03400FCCAB1 /* PokerHand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7A855142FB03400FCCAB1 /* PokerHand.m */; };
+		CAC7A85C142FCA2600FCCAB1 /* PokerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7A85B142FCA2600FCCAB1 /* PokerGame.m */; };
+		CAC7A85F142FCDCE00FCCAB1 /* PokerTable.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7A85E142FCDCE00FCCAB1 /* PokerTable.m */; };
+		CAC7A862142FCE8F00FCCAB1 /* PokerPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7A861142FCE8F00FCCAB1 /* PokerPlayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,18 +41,31 @@
 		CA6F7241142979C6004D3B2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA6F7243142979C6004D3B2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CA6F7245142979C6004D3B2A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		CA6F7249142979C6004D3B2A /* Poker-Info.plist */ = {isa = PBXFileReference; path = "Poker-Info.plist"; sourceTree = "<group>"; };
+		CA6F7249142979C6004D3B2A /* Poker-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Poker-Info.plist"; sourceTree = "<group>"; };
 		CA6F724B142979C6004D3B2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA6F724D142979C6004D3B2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		CA6F724F142979C6004D3B2A /* Poker-Prefix.pch */ = {isa = PBXFileReference; path = "Poker-Prefix.pch"; sourceTree = "<group>"; };
-		CA6F7250142979C6004D3B2A /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		CA6F724F142979C6004D3B2A /* Poker-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Poker-Prefix.pch"; sourceTree = "<group>"; };
+		CA6F7250142979C6004D3B2A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		CA6F7251142979C6004D3B2A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		CA6F7258142979C6004D3B2A /* PokerTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PokerTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6F7259142979C6004D3B2A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		CA6F7261142979C6004D3B2A /* PokerTests-Info.plist */ = {isa = PBXFileReference; path = "PokerTests-Info.plist"; sourceTree = "<group>"; };
+		CA6F7261142979C6004D3B2A /* PokerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PokerTests-Info.plist"; sourceTree = "<group>"; };
 		CA6F7263142979C6004D3B2A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CA6F7265142979C6004D3B2A /* PokerTests.h */ = {isa = PBXFileReference; path = PokerTests.h; sourceTree = "<group>"; };
+		CA6F7265142979C6004D3B2A /* PokerTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PokerTests.h; sourceTree = "<group>"; };
 		CA6F7266142979C6004D3B2A /* PokerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokerTests.m; sourceTree = "<group>"; };
+		CA6F727014297A12004D3B2A /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		CA6F727114297A12004D3B2A /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		CAC7A851142FAB2D00FCCAB1 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
+		CAC7A852142FAB2D00FCCAB1 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
+		CAC7A854142FB03400FCCAB1 /* PokerHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerHand.h; sourceTree = "<group>"; };
+		CAC7A855142FB03400FCCAB1 /* PokerHand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerHand.m; sourceTree = "<group>"; };
+		CAC7A857142FBCE500FCCAB1 /* HandArrays.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandArrays.h; sourceTree = "<group>"; };
+		CAC7A85A142FCA2600FCCAB1 /* PokerGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerGame.h; sourceTree = "<group>"; };
+		CAC7A85B142FCA2600FCCAB1 /* PokerGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerGame.m; sourceTree = "<group>"; };
+		CAC7A85D142FCDCE00FCCAB1 /* PokerTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerTable.h; sourceTree = "<group>"; };
+		CAC7A85E142FCDCE00FCCAB1 /* PokerTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerTable.m; sourceTree = "<group>"; };
+		CAC7A860142FCE8F00FCCAB1 /* PokerPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerPlayer.h; sourceTree = "<group>"; };
+		CAC7A861142FCE8F00FCCAB1 /* PokerPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerPlayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,9 +125,11 @@
 		CA6F7247142979C6004D3B2A /* Poker */ = {
 			isa = PBXGroup;
 			children = (
+				CA6F7248142979C6004D3B2A /* Supporting Files */,
 				CA6F7250142979C6004D3B2A /* AppDelegate.h */,
 				CA6F7251142979C6004D3B2A /* AppDelegate.m */,
-				CA6F7248142979C6004D3B2A /* Supporting Files */,
+				CAC7A858142FC9FC00FCCAB1 /* Cards */,
+				CAC7A859142FCA0900FCCAB1 /* Poker */,
 			);
 			path = Poker;
 			sourceTree = "<group>";
@@ -141,6 +162,33 @@
 				CA6F7262142979C6004D3B2A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		CAC7A858142FC9FC00FCCAB1 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				CA6F727014297A12004D3B2A /* Card.h */,
+				CA6F727114297A12004D3B2A /* Card.m */,
+				CAC7A851142FAB2D00FCCAB1 /* Deck.h */,
+				CAC7A852142FAB2D00FCCAB1 /* Deck.m */,
+			);
+			name = Cards;
+			sourceTree = "<group>";
+		};
+		CAC7A859142FCA0900FCCAB1 /* Poker */ = {
+			isa = PBXGroup;
+			children = (
+				CAC7A854142FB03400FCCAB1 /* PokerHand.h */,
+				CAC7A855142FB03400FCCAB1 /* PokerHand.m */,
+				CAC7A857142FBCE500FCCAB1 /* HandArrays.h */,
+				CAC7A85A142FCA2600FCCAB1 /* PokerGame.h */,
+				CAC7A85B142FCA2600FCCAB1 /* PokerGame.m */,
+				CAC7A85D142FCDCE00FCCAB1 /* PokerTable.h */,
+				CAC7A85E142FCDCE00FCCAB1 /* PokerTable.m */,
+				CAC7A860142FCE8F00FCCAB1 /* PokerPlayer.h */,
+				CAC7A861142FCE8F00FCCAB1 /* PokerPlayer.m */,
+			);
+			name = Poker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +299,12 @@
 			files = (
 				CA6F724E142979C6004D3B2A /* main.m in Sources */,
 				CA6F7252142979C6004D3B2A /* AppDelegate.m in Sources */,
+				CA6F727214297A12004D3B2A /* Card.m in Sources */,
+				CAC7A853142FAB2D00FCCAB1 /* Deck.m in Sources */,
+				CAC7A856142FB03400FCCAB1 /* PokerHand.m in Sources */,
+				CAC7A85C142FCA2600FCCAB1 /* PokerGame.m in Sources */,
+				CAC7A85F142FCDCE00FCCAB1 /* PokerTable.m in Sources */,
+				CAC7A862142FCE8F00FCCAB1 /* PokerPlayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,7 +366,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -331,7 +385,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -345,6 +399,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Poker/Poker-Prefix.pch";
 				INFOPLIST_FILE = "Poker/Poker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -356,6 +411,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Poker/Poker-Prefix.pch";
 				INFOPLIST_FILE = "Poker/Poker-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -414,6 +470,7 @@
 				CA6F726C142979C6004D3B2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		CA6F726D142979C6004D3B2A /* Build configuration list for PBXNativeTarget "PokerTests" */ = {
 			isa = XCConfigurationList;
@@ -422,6 +479,7 @@
 				CA6F726F142979C6004D3B2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
