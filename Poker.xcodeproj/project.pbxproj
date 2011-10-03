@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA4FC7CA1439015B00E30CE0 /* PlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FC7C91439015A00E30CE0 /* PlayersViewController.m */; };
+		CA4FC7D3143905C600E30CE0 /* EditPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FC7D1143905C500E30CE0 /* EditPlayerViewController.m */; };
+		CA4FC7D714391E7600E30CE0 /* SimulationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FC7D614391E7500E30CE0 /* SimulationViewController.m */; };
 		CA6F7242142979C6004D3B2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6F7241142979C6004D3B2A /* UIKit.framework */; };
 		CA6F7244142979C6004D3B2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6F7243142979C6004D3B2A /* Foundation.framework */; };
 		CA6F7246142979C6004D3B2A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6F7245142979C6004D3B2A /* CoreGraphics.framework */; };
@@ -37,6 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CA4FC7C81439015A00E30CE0 /* PlayersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayersViewController.h; sourceTree = "<group>"; };
+		CA4FC7C91439015A00E30CE0 /* PlayersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayersViewController.m; sourceTree = "<group>"; };
+		CA4FC7D0143905C500E30CE0 /* EditPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditPlayerViewController.h; sourceTree = "<group>"; };
+		CA4FC7D1143905C500E30CE0 /* EditPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPlayerViewController.m; sourceTree = "<group>"; };
+		CA4FC7D514391E7500E30CE0 /* SimulationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulationViewController.h; sourceTree = "<group>"; };
+		CA4FC7D614391E7500E30CE0 /* SimulationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulationViewController.m; sourceTree = "<group>"; };
 		CA6F723D142979C6004D3B2A /* Poker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6F7241142979C6004D3B2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA6F7243142979C6004D3B2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -96,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				CA6F7247142979C6004D3B2A /* Poker */,
+				CA6F7248142979C6004D3B2A /* Supporting Files */,
 				CA6F725F142979C6004D3B2A /* PokerTests */,
 				CA6F7240142979C6004D3B2A /* Frameworks */,
 				CA6F723E142979C6004D3B2A /* Products */,
@@ -125,9 +135,14 @@
 		CA6F7247142979C6004D3B2A /* Poker */ = {
 			isa = PBXGroup;
 			children = (
-				CA6F7248142979C6004D3B2A /* Supporting Files */,
 				CA6F7250142979C6004D3B2A /* AppDelegate.h */,
 				CA6F7251142979C6004D3B2A /* AppDelegate.m */,
+				CA4FC7C81439015A00E30CE0 /* PlayersViewController.h */,
+				CA4FC7C91439015A00E30CE0 /* PlayersViewController.m */,
+				CA4FC7D0143905C500E30CE0 /* EditPlayerViewController.h */,
+				CA4FC7D1143905C500E30CE0 /* EditPlayerViewController.m */,
+				CA4FC7D514391E7500E30CE0 /* SimulationViewController.h */,
+				CA4FC7D614391E7500E30CE0 /* SimulationViewController.m */,
 				CAC7A858142FC9FC00FCCAB1 /* Cards */,
 				CAC7A859142FCA0900FCCAB1 /* Poker */,
 			);
@@ -143,6 +158,7 @@
 				CA6F724F142979C6004D3B2A /* Poker-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			path = Poker;
 			sourceTree = "<group>";
 		};
 		CA6F725F142979C6004D3B2A /* PokerTests */ = {
@@ -305,6 +321,9 @@
 				CAC7A85C142FCA2600FCCAB1 /* PokerGame.m in Sources */,
 				CAC7A85F142FCDCE00FCCAB1 /* PokerTable.m in Sources */,
 				CAC7A862142FCE8F00FCCAB1 /* PokerPlayer.m in Sources */,
+				CA4FC7CA1439015B00E30CE0 /* PlayersViewController.m in Sources */,
+				CA4FC7D3143905C600E30CE0 /* EditPlayerViewController.m in Sources */,
+				CA4FC7D714391E7600E30CE0 /* SimulationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

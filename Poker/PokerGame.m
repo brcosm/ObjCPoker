@@ -8,11 +8,10 @@
 
 #import "PokerGame.h"
 
-@implementation PokerGame {
-    NSMutableArray *playersInHand;
-}
+@implementation PokerGame 
 @synthesize table = table_;
 @synthesize deck = deck_;
+@synthesize playersInHand;
 
 - (id)initWithTable:(PokerTable *)table andDeck:(Deck *)deck {
     self = [super init];
@@ -43,6 +42,7 @@
 - (void)updatePlayers {
     NSMutableArray *players = [NSMutableArray array];
     for (PokerPlayer *p in self.table.players) {
+        [p.holeCards removeAllObjects];
         if (p.chips > 0) {
             [players addObject:p];
         }
@@ -101,6 +101,38 @@
     NSLog(@"Dealt the river card");
 }
 
+- (void)getHands {
+    NSMutableArray *sevenCards = [NSMutableArray arrayWithCapacity:7];
+    for (PokerPlayer *p in playersInHand) {
+        [sevenCards addObjectsFromArray:p.holeCards];
+        [sevenCards addObjectsFromArray:self.table.communityCards];
+        p.hand = [PokerHand bestHandFrom:sevenCards];
+        [sevenCards removeAllObjects];
+    }
+    // Sort players by hand rank
+    [playersInHand sortUsingComparator:^NSComparisonResult(PokerPlayer *p1, PokerPlayer *p2){
+        if (p1.hand.rank < p2.hand.rank) return NSOrderedAscending;
+        if (p1.hand.rank > p2.hand.rank) return NSOrderedDescending;
+        return NSOrderedSame;
+    }];
+}
+
+- (void)distributePot {
+    int chipsToWin = table_.pot;
+    for (PokerPlayer *p in playersInHand) {
+        int beforeChips = p.chips;
+        int beforeBet = p.totalBet;
+        for (PokerPlayer *q in table_.players) {
+            p.chips += MIN(q.totalBet, beforeBet);
+            //NSLog(@"%@ won %d of %d chips from %@",p.name, MIN(q.totalBet, beforeBet), q.totalBet, q.name);
+            table_.pot -= MIN(q.totalBet, beforeBet);
+            q.totalBet -= MIN(q.totalBet, beforeBet);
+        }
+        NSLog(@"%@ won %d chips from the pot of %d", p.name, (p.chips - beforeChips), chipsToWin);
+        if (p.hand) NSLog(@"With the hand %@", p.hand);
+    }
+}
+
 - (void)collectBetsStartingAtIndex:(int)idx withCallAmount:(int)chips {
     int callAmount = chips;
     int currentPlayerIndex = idx % playersInHand.count;
@@ -145,14 +177,29 @@
     [self removeFoldedPlayers];
 }
 
-- (void)playHand {
-    // Assume that the table state is clean
-    // Assume that the button has been moved
+- (void)prepareNewHand {
+    
+    // prune players
+    [self updatePlayers];
+    
+    // reset deck
+    [self resetDeck];
+    
+    // reset table
+    [self.table reset];
+    
+    // only players with chips are in the hand
     playersInHand = [NSMutableArray arrayWithArray:self.table.players];
     
     // Shuffle deck
     [self.deck shuffle];
     [self.deck shuffle];
+}
+
+- (void)playHand {
+    // Assume that the table state is clean
+    // Assume that the button has been moved
+    [self prepareNewHand];
     
     // Post the blinds
     [self postBlinds];
@@ -184,44 +231,17 @@
     }
     // Get hands
     if (playersInHand.count > 1) {
-        NSMutableArray *sevenCards = [NSMutableArray arrayWithCapacity:7];
-        for (PokerPlayer *p in playersInHand) {
-            [sevenCards addObjectsFromArray:p.holeCards];
-            [sevenCards addObjectsFromArray:self.table.communityCards];
-            p.hand = [PokerHand bestHandFrom:sevenCards];
-            [sevenCards removeAllObjects];
-        }
-        // Sort players by hand rank
-        [playersInHand sortUsingComparator:^NSComparisonResult(PokerPlayer *p1, PokerPlayer *p2){
-            if (p1.hand.rank < p2.hand.rank) return NSOrderedAscending;
-            if (p1.hand.rank > p2.hand.rank) return NSOrderedDescending;
-            return NSOrderedSame;
-        }];
+        [self getHands];
     }
     
     // distribute pot
-    int chipsToWin = table_.pot;
-    for (PokerPlayer *p in playersInHand) {
-        int beforeChips = p.chips;
-        int beforeBet = p.totalBet;
-        for (PokerPlayer *q in table_.players) {
-            p.chips += MIN(q.totalBet, beforeBet);
-            //NSLog(@"%@ won %d of %d chips from %@",p.name, MIN(q.totalBet, beforeBet), q.totalBet, q.name);
-            table_.pot -= MIN(q.totalBet, beforeBet);
-            q.totalBet -= MIN(q.totalBet, beforeBet);
-        }
-        NSLog(@"%@ won %d chips from the pot of %d", p.name, (p.chips - beforeChips), chipsToWin);
-        if (p.hand) NSLog(@"With the hand %@", p.hand);
+    [self distributePot];
+}
+
+- (void)playGame {
+    while (self.table.players.count > 1) {
+        [self playHand];
     }
-    
-    // prune players
-    [self updatePlayers];
-    
-    // reset deck
-    [self resetDeck];
-    
-    // reset table
-    [self.table reset];    
 }
 
 @end

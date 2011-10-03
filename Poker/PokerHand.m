@@ -15,8 +15,7 @@
 int find_product(int key) {
     int low = 0, high = 4887, mid;
     
-    while ( low <= high )
-    {
+    while ( low <= high ) {
         mid = (high+low) >> 1;      // divide by two
         if ( key < products[mid] )
             high = mid - 1;
