@@ -105,7 +105,7 @@
         self.player.name = nameField.text;
     if (chipsField.text)
         self.player.chips = chipsField.text.intValue;
-    if (newPlayer_)
+    if (newPlayer_ && self.player.name)
         [self.pvc.players addObject:self.player];
     [self.navigationController popViewControllerAnimated:YES];
 }

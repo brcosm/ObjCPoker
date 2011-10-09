@@ -16,6 +16,8 @@
 @property (nonatomic, strong) PokerTable *table;
 @property (nonatomic, strong) Deck *deck;
 @property (nonatomic, strong) NSMutableArray *playersInHand;
+@property (nonatomic, assign) BOOL stopped;
+@property (nonatomic, strong) NSMutableArray *handLog;
 
 - (id)initWithTable:(PokerTable *)table andDeck:(Deck *)deck;
 
@@ -40,6 +42,5 @@
 - (void)playHand;
 
 - (void)playGame;
-
 
 @end

@@ -12,12 +12,39 @@
 @synthesize table = table_;
 @synthesize deck = deck_;
 @synthesize playersInHand;
+@synthesize stopped;
+@synthesize handLog;
+
+#pragma mark - Primited Game Methods
+
+- (void)dealCardToPlayer:(PokerPlayer *)p {
+    [p.holeCards addObject:[self.deck draw]];
+    [self.handLog addObject:[NSString stringWithFormat:@"Hole Card dealt to %@",p.name]];
+}
+
+- (void)dealBurnCard {
+    [self.table.burnedCards addObject:[self.deck draw]];
+    [self.handLog addObject:[NSString stringWithString:@"Burn Card dealt"]];
+}
+
+- (void)dealCommunityCard {
+    Card *cardToAdd = [self.deck draw];
+    [self.table.communityCards addObject:cardToAdd];
+    int idx = self.table.communityCards.count;
+    if (idx < 4)
+        [self.handLog addObject:[NSString stringWithFormat:@"%@ dealt to the flop", cardToAdd]];
+    else if (idx == 4)
+        [self.handLog addObject:[NSString stringWithFormat:@"%@ dealt to the turn", cardToAdd]];
+    else
+        [self.handLog addObject:[NSString stringWithFormat:@"%@ dealt to the river", cardToAdd]];
+}
 
 - (id)initWithTable:(PokerTable *)table andDeck:(Deck *)deck {
     self = [super init];
     if (self) {
         self.table = table;
         self.deck = deck;
+        self.handLog = [NSMutableArray array];
     }
     return self;
 }
@@ -28,6 +55,7 @@
         p.totalBet += p.currentBet;
         p.currentBet = 0;
     }
+    [self.handLog addObject:[NSString stringWithFormat:@"Pot is now %d chips", self.table.pot]];
 }
 
 - (void)removeFoldedPlayers {
@@ -48,6 +76,8 @@
         }
     }
     self.table.players = players;
+    if (self.table.players.count <= 1)
+        self.stopped = YES;
 }
 
 - (void)resetDeck {
@@ -76,29 +106,25 @@
     PokerPlayer *p;
     for (int i = 0; i < self.table.players.count*2; i++) {
         p = [self.table.players objectAtIndex:i%self.table.players.count];
-        [p.holeCards addObject:[self.deck draw]];
-        NSLog(@"Dealt card to %@", p.name);
+        [self dealCardToPlayer:p];
     }
 ;}
 
 - (void)dealFlop {
-    [self.table.burnedCards addObject:[self.deck draw]];
-    [self.table.communityCards addObject:[self.deck draw]];
-    [self.table.communityCards addObject:[self.deck draw]];
-    [self.table.communityCards addObject:[self.deck draw]];
-    NSLog(@"Dealt 3 cards to flop");
+    [self dealBurnCard];
+    [self dealCommunityCard];
+    [self dealCommunityCard];
+    [self dealCommunityCard];
 }
 
 - (void)dealTurn {
-    [self.table.burnedCards addObject:[self.deck draw]];
-    [self.table.communityCards addObject:[self.deck draw]];
-    NSLog(@"Dealt the turn card");
+    [self dealBurnCard];
+    [self dealCommunityCard];
 }
 
 - (void)dealRiver {
-    [self.table.burnedCards addObject:[self.deck draw]];
-    [self.table.communityCards addObject:[self.deck draw]];
-    NSLog(@"Dealt the river card");
+    [self dealBurnCard];
+    [self dealCommunityCard];
 }
 
 - (void)getHands {
@@ -107,6 +133,7 @@
         [sevenCards addObjectsFromArray:p.holeCards];
         [sevenCards addObjectsFromArray:self.table.communityCards];
         p.hand = [PokerHand bestHandFrom:sevenCards];
+        [self.handLog addObject:[NSString stringWithFormat:@"%@ shows %@", p.name, p.hand]];
         [sevenCards removeAllObjects];
     }
     // Sort players by hand rank
@@ -124,16 +151,17 @@
         int beforeBet = p.totalBet;
         for (PokerPlayer *q in table_.players) {
             p.chips += MIN(q.totalBet, beforeBet);
-            //NSLog(@"%@ won %d of %d chips from %@",p.name, MIN(q.totalBet, beforeBet), q.totalBet, q.name);
             table_.pot -= MIN(q.totalBet, beforeBet);
             q.totalBet -= MIN(q.totalBet, beforeBet);
         }
-        NSLog(@"%@ won %d chips from the pot of %d", p.name, (p.chips - beforeChips), chipsToWin);
-        if (p.hand) NSLog(@"With the hand %@", p.hand);
+        if (p.chips - beforeChips > 0)
+            [self.handLog addObject:[NSString stringWithFormat:@"%@ won %d chips from the %d chip pot", p.name, (p.chips - beforeChips), chipsToWin]];
     }
 }
 
 - (void)collectBetsStartingAtIndex:(int)idx withCallAmount:(int)chips {
+    [self.handLog addObject:[NSString stringWithFormat:@"Betting started - %d to call", chips]];
+    
     int callAmount = chips;
     int currentPlayerIndex = idx % playersInHand.count;
     int decisions = playersInHand.count;
@@ -147,24 +175,24 @@
         }
         else if (bet < callAmount && !player.allIn) {
             // Fold
-            NSLog(@"%@ folded (%d/%d)", player.name, player.currentBet, callAmount);
+            [self.handLog addObject:[NSString stringWithFormat:@"%@ folded", player.name]];
             decisions--;
             player.folded = YES;
         }
         else if (bet == callAmount) {
             // Call/Check
-            NSLog(@"%@ called %d", player.name, player.currentBet);
+            [self.handLog addObject:[NSString stringWithFormat:@"%@ called %d", player.name, callAmount]];
             decisions--;
         }
         else if (bet > callAmount) {
             // Raise
-            NSLog(@"%@ raised to %d", player.name, player.currentBet);
+           [self.handLog addObject:[NSString stringWithFormat:@"%@ raised to %d", player.name, bet]];
             decisions = playersInHand.count-1;
             callAmount = bet;
         }
         else {
             // Player is all in
-            NSLog(@"%@ is all in with %d", player.name, player.currentBet);
+            [self.handLog addObject:[NSString stringWithFormat:@"%@ is all in", player.name]];
             decisions--;
         }
         currentPlayerIndex = (currentPlayerIndex+1) % playersInHand.count;
@@ -178,6 +206,8 @@
 }
 
 - (void)prepareNewHand {
+    // reset hand log
+    [self.handLog removeAllObjects];
     
     // prune players
     [self updatePlayers];
@@ -196,10 +226,16 @@
     [self.deck shuffle];
 }
 
+#pragma mark - Testing Methods for Full Hand or Game
+
 - (void)playHand {
     // Assume that the table state is clean
     // Assume that the button has been moved
     [self prepareNewHand];
+    
+    // Do nothing if game is stopped
+    if (stopped)
+        return;
     
     // Post the blinds
     [self postBlinds];

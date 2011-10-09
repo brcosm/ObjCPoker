@@ -7,11 +7,13 @@
 //
 
 #import "SimulationViewController.h"
+#import "HandLogViewController.h"
 #import "PokerGame.h"
 
 @implementation SimulationViewController {
     UITableViewCell *simulateHandCell;
     UITableViewCell *simulateGameCell;
+    UITableViewCell *viewHandCell;
 }
 @synthesize game;
 
@@ -50,6 +52,11 @@
     tv.dataSource = self;
     tv.delegate = self;
     self.view = tv;
+    
+    self.navigationItem.leftBarButtonItem =
+    [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone 
+                                                  target:self 
+                                                  action:@selector(goBack)];
 }
 
 #pragma mark - Table view data source
@@ -60,7 +67,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0)
-        return 2;
+        return 3;
     if (section == 1)
         return self.game.table.players.count;
     return 0;
@@ -81,8 +88,12 @@
         if (indexPath.row == 0) {
             cell.textLabel.text = @"Simulate Hand";
             simulateHandCell = cell;
-        } 
+        }
         if (indexPath.row == 1) {
+            cell.textLabel.text = @"View Last hand";
+            viewHandCell = cell;
+        }
+        if (indexPath.row == 2) {
             cell.textLabel.text = @"Simulate Game";
             simulateGameCell = cell;
         }
@@ -91,9 +102,7 @@
     if (indexPath.section == 1) {
         PokerPlayer *p = [self.game.table.players objectAtIndex:indexPath.row];
         NSMutableString *cellText = [NSMutableString stringWithString:p.name];
-        [cellText appendFormat:@" | chips:%d", p.chips];
-        if (self.game.table.buttonIndex == indexPath.row)
-            [cellText appendFormat:@" (B)"];
+        [cellText appendFormat:@" | chips: %d", p.chips];
         cell.textLabel.text = cellText;
     }  
     
@@ -113,11 +122,15 @@
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Selected a row");
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
             [self simulateHand];
         }
         if (indexPath.row == 1) {
+            [self viewLastHand];
+        }
+        if (indexPath.row == 2) {
             [self simulateGame];
         }
     }
@@ -130,28 +143,38 @@
     [(UITableView *)self.view reloadData];
 }
 
+- (void)viewLastHand {
+    HandLogViewController *hvc = [[HandLogViewController alloc] initWithHandLog:self.game.handLog];
+    [self.navigationController pushViewController:hvc animated:YES];
+}
+
 - (void)simulateGame {
-    simulateHandCell.userInteractionEnabled = NO;
-    simulateGameCell.userInteractionEnabled = NO;
+    //simulateHandCell.userInteractionEnabled = NO;
+    //simulateGameCell.userInteractionEnabled = NO;
     dispatch_queue_t pokerQueue = dispatch_queue_create("Poker Queue",0);
     dispatch_queue_t currentQueue = dispatch_get_current_queue();
     dispatch_async(pokerQueue, ^{
         int hands = 0;
-        while (self.game.table.players.count > 1) {
+        while (!self.game.stopped) {
             [self.game playHand];
             hands++;
             if (hands % 10 == 0) {
-                dispatch_sync(currentQueue, ^{
+                dispatch_async(currentQueue, ^{
                     [(UITableView *)self.view reloadData];
                 });
             }
         }
-        dispatch_sync(currentQueue, ^{ 
+        dispatch_async(currentQueue, ^{ 
             [(UITableView *)self.view reloadData];
-            simulateHandCell.userInteractionEnabled = YES;
-            simulateGameCell.userInteractionEnabled = YES;
+            //simulateHandCell.userInteractionEnabled = YES;
+            //simulateGameCell.userInteractionEnabled = YES;
         });
     });
+}
+
+- (void)goBack {
+    self.game.stopped = YES;
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

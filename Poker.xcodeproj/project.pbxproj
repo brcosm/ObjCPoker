@@ -10,6 +10,7 @@
 		CA4FC7CA1439015B00E30CE0 /* PlayersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FC7C91439015A00E30CE0 /* PlayersViewController.m */; };
 		CA4FC7D3143905C600E30CE0 /* EditPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FC7D1143905C500E30CE0 /* EditPlayerViewController.m */; };
 		CA4FC7D714391E7600E30CE0 /* SimulationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FC7D614391E7500E30CE0 /* SimulationViewController.m */; };
+		CA4FC7DA1440A9A500E30CE0 /* PokerAI.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4FC7D91440A9A400E30CE0 /* PokerAI.m */; };
 		CA6F7242142979C6004D3B2A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6F7241142979C6004D3B2A /* UIKit.framework */; };
 		CA6F7244142979C6004D3B2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6F7243142979C6004D3B2A /* Foundation.framework */; };
 		CA6F7246142979C6004D3B2A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA6F7245142979C6004D3B2A /* CoreGraphics.framework */; };
@@ -22,6 +23,7 @@
 		CA6F7264142979C6004D3B2A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA6F7262142979C6004D3B2A /* InfoPlist.strings */; };
 		CA6F7267142979C6004D3B2A /* PokerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6F7266142979C6004D3B2A /* PokerTests.m */; };
 		CA6F727214297A12004D3B2A /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = CA6F727114297A12004D3B2A /* Card.m */; };
+		CA8A76901442196C00C786B6 /* HandLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA8A768F1442196C00C786B6 /* HandLogViewController.m */; };
 		CAC7A853142FAB2D00FCCAB1 /* Deck.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7A852142FAB2D00FCCAB1 /* Deck.m */; };
 		CAC7A856142FB03400FCCAB1 /* PokerHand.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7A855142FB03400FCCAB1 /* PokerHand.m */; };
 		CAC7A85C142FCA2600FCCAB1 /* PokerGame.m in Sources */ = {isa = PBXBuildFile; fileRef = CAC7A85B142FCA2600FCCAB1 /* PokerGame.m */; };
@@ -46,6 +48,8 @@
 		CA4FC7D1143905C500E30CE0 /* EditPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditPlayerViewController.m; sourceTree = "<group>"; };
 		CA4FC7D514391E7500E30CE0 /* SimulationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulationViewController.h; sourceTree = "<group>"; };
 		CA4FC7D614391E7500E30CE0 /* SimulationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulationViewController.m; sourceTree = "<group>"; };
+		CA4FC7D81440A9A400E30CE0 /* PokerAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerAI.h; sourceTree = "<group>"; };
+		CA4FC7D91440A9A400E30CE0 /* PokerAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PokerAI.m; sourceTree = "<group>"; };
 		CA6F723D142979C6004D3B2A /* Poker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Poker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA6F7241142979C6004D3B2A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CA6F7243142979C6004D3B2A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,6 +68,8 @@
 		CA6F7266142979C6004D3B2A /* PokerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PokerTests.m; sourceTree = "<group>"; };
 		CA6F727014297A12004D3B2A /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		CA6F727114297A12004D3B2A /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		CA8A768E1442196B00C786B6 /* HandLogViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HandLogViewController.h; sourceTree = "<group>"; };
+		CA8A768F1442196C00C786B6 /* HandLogViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HandLogViewController.m; sourceTree = "<group>"; };
 		CAC7A851142FAB2D00FCCAB1 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		CAC7A852142FAB2D00FCCAB1 /* Deck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Deck.m; sourceTree = "<group>"; };
 		CAC7A854142FB03400FCCAB1 /* PokerHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PokerHand.h; sourceTree = "<group>"; };
@@ -143,6 +149,8 @@
 				CA4FC7D1143905C500E30CE0 /* EditPlayerViewController.m */,
 				CA4FC7D514391E7500E30CE0 /* SimulationViewController.h */,
 				CA4FC7D614391E7500E30CE0 /* SimulationViewController.m */,
+				CA8A768E1442196B00C786B6 /* HandLogViewController.h */,
+				CA8A768F1442196C00C786B6 /* HandLogViewController.m */,
 				CAC7A858142FC9FC00FCCAB1 /* Cards */,
 				CAC7A859142FCA0900FCCAB1 /* Poker */,
 			);
@@ -203,6 +211,8 @@
 				CAC7A85E142FCDCE00FCCAB1 /* PokerTable.m */,
 				CAC7A860142FCE8F00FCCAB1 /* PokerPlayer.h */,
 				CAC7A861142FCE8F00FCCAB1 /* PokerPlayer.m */,
+				CA4FC7D81440A9A400E30CE0 /* PokerAI.h */,
+				CA4FC7D91440A9A400E30CE0 /* PokerAI.m */,
 			);
 			name = Poker;
 			sourceTree = "<group>";
@@ -324,6 +334,8 @@
 				CA4FC7CA1439015B00E30CE0 /* PlayersViewController.m in Sources */,
 				CA4FC7D3143905C600E30CE0 /* EditPlayerViewController.m in Sources */,
 				CA4FC7D714391E7600E30CE0 /* SimulationViewController.m in Sources */,
+				CA4FC7DA1440A9A500E30CE0 /* PokerAI.m in Sources */,
+				CA8A76901442196C00C786B6 /* HandLogViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

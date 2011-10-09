@@ -16,6 +16,8 @@
 
 - (void)simulateHand;
 
+- (void)viewLastHand;
+
 - (void)simulateGame;
 
 @end

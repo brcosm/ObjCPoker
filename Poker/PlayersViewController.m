@@ -75,7 +75,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0)
-        return @"Add at least 2 players and then press play to start a new game";
+        return @"Add at least 2 players to begin";
     return nil;
 }
 
